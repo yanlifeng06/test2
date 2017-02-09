@@ -38,7 +38,7 @@ void readdir_fun(char *path,int classlevel)
                 if (dp->d_name[0]=='.')  
                         continue;  
                 memset(longpath,'\0',sizeof(longpath));  
-          /*strncpy(longpath,path,strlen(path));  
+                /*strncpy(longpath,path,strlen(path));  
                 strncat(longpath,"/",1);  
                 strncat(longpath,dp->d_name,strlen(dp->d_name));*/  
                 sprintf(longpath,"%s/%s",path,dp->d_name);  
