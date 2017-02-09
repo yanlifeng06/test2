@@ -12,19 +12,19 @@ int main(int argc, char **argv)
 {
 	char *pathvar;  
   
-        pathvar = getenv( "HOME" );  //»ñÈ¡»·¾³±äÁ¿HOMEÂ·¾¶  
+        pathvar = getenv( "HOME" );  //èŽ·å–çŽ¯å¢ƒå˜é‡HOMEè·¯å¾„  
         if( pathvar != NULL )  
         {  
             printf("Home path variable is: %s\n",pathvar);  
+	    printf("getclose\n");
         }  
         readdir_fun("/data/ccos",0);  
-        return 0;  
-	
+        return 0; 	
 }
 
 void readdir_fun(char *path,int classlevel)  
 {  
-        DIR *dirp;//Ö÷Ä¿Â¼  
+        DIR *dirp;//ä¸»ç›®å½•  
         char longpath[128];  
         struct dirent *dp;  
         struct stat buff;  
@@ -33,7 +33,7 @@ void readdir_fun(char *path,int classlevel)
 		    exit(-1);  	
 		}
   
-        while((dp=readdir(dirp))!=NULL)//Ò»¼¶  
+        while((dp=readdir(dirp))!=NULL)//ä¸€çº§  
         {  
                 if (dp->d_name[0]=='.')  
                         continue;  
@@ -48,7 +48,7 @@ void readdir_fun(char *path,int classlevel)
                         continue;  
                 }  
                 if (S_ISREG(buff.st_mode)){  
-                        printf("µÚ%d¼¶Ä¿Â¼½á¹¹ÊÇ:%s, \n",classlevel,dp->d_name);  
+                        printf("ç¬¬%dçº§ç›®å½•ç»“æž„æ˜¯:%s, \n",classlevel,dp->d_name);  
                         continue;  
                         }  
                 if (S_ISDIR(buff.st_mode))  
@@ -60,7 +60,7 @@ void readdir_fun(char *path,int classlevel)
                                                                 //      printf("   ");  
                                                         }  
                                         }  
-                                printf("µÚ%d¼¶Ä¿Â¼½á¹¹ÊÇ%s,ÎÄ¼þÀàÐÍÊÇ%d,ÎÄ¼þË÷ÒýÊÇ%d,ÎÄ¼þÆ«ÒÆÊÇ%d  \n",classlevel,dp->d_name,dp->d_type,dp->d_ino,dp->d_off);  
+                                printf("ç¬¬%dçº§ç›®å½•ç»“æž„æ˜¯%s,æ–‡ä»¶ç±»åž‹æ˜¯%d,æ–‡ä»¶ç´¢å¼•æ˜¯%d,æ–‡ä»¶åç§»æ˜¯%d  \n",classlevel,dp->d_name,dp->d_type,dp->d_ino,dp->d_off);  
                                 ++classlevel;  
                         readdir_fun(longpath,classlevel);  
                         --classlevel;  
