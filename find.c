@@ -57,7 +57,7 @@ void readdir_fun(char *path,int classlevel)
                                         {  
                                                 int i;  
                                                 for(i=0; i<classlevel; i++){  
-                                                                //      printf("   ");  
+                                                printf("yes\n");
                                                         }  
                                         }  
                                 printf("第%d级目录结构是%s,文件类型是%d,文件索引是%d,文件偏移是%d  \n",classlevel,dp->d_name,dp->d_type,dp->d_ino,dp->d_off);  
