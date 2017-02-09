@@ -1,0 +1,23 @@
+system分区检测，主要检测system分区文件改动（增加或者被删除）
+
+平台兼容测试:
+mstar:E3 A2
+amlogic:V8E
+realtek:9R08_E6000
+hisi:G7200
+1、mount -o remount,rw /system
+2、在system分区任意目录随意创建文件，1、2、3、4...（文件的位置尽可能随机分散,文件名随意）
+3、把checksys拷贝到/system/bin下,修改权限755
+4、重启电视
+
+5、运行：checksys，/skyworth下多出两个文件，checksysVersion和checksysfilelist。checksysVersion中的版本号正好是
+ro.build.skyversion=系统版本号.酷开版本号；运行后/data/ccos下没有变化；
+6、再次运行：checksys，/data/ccos下多出一个filelist文件，再重复运行几次checksys，/data/ccos下结果应该一样
+
+7、mount -o remount,rw /system;随意删除几个第2步中创建的文件，或者重新在system分区任意目录下创建文件：a、b、c...
+8、重启电视，运行checksys，脚本运行完后，查看/data/ccos下，生成sysadded和sysdeleted文件，
+其中记录的正好是第7步创建和删除的文件，查看这两个文件的权限是：600，system：system；重复运行几次checksys，结果都是一样
+
+9、修改系统版本号或者coocaa版本号重启，运行checksys，/data/ccos下sysadded和sysdeleted被删除，/skyworth下的checksysVersion文件的版本号
+也正好和修改后的版本号一致，重复运行几次，data/ccos下都没有出现sysadded和sysdeleted文件
+10、再重复一次678
