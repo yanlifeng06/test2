@@ -66,6 +66,7 @@ void readdir_fun(char *path,int classlevel)
                         --classlevel;  
                         usleep(100);  
                  }  
-        }  
+        } 	
+	closed不能输入
         closedir(dirp);  
 }  
